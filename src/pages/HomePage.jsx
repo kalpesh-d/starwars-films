@@ -37,6 +37,7 @@ function HomePage() {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <main className="h-fit">
