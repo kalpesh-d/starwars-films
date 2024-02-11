@@ -1,41 +1,44 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App.jsx";
+import "./index.css";
 import {
   ApolloClient,
   InMemoryCache,
   gql,
   ApolloProvider,
 } from "@apollo/client";
+import { BrowserRouter } from "react-router-dom";
 
-// const client = new ApolloClient({
-//   uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
-//   cache: new InMemoryCache(),
-// });
+const client = new ApolloClient({
+  uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+  cache: new InMemoryCache(),
+});
 
-// const query = gql`
-//   query Query($after: String, $before: String, $first: Int, $last: Int) {
-//     allFilms(after: $after, before: $before, first: $first, last: $last) {
-//       edges {
-//         cursor
-//         node {
-//           id
-//           director
-//           title
-//           releaseDate
-//         }
-//       }
-//     }
-//   }
-// `;
+const query = gql`
+  query Query($after: String) {
+    allFilms(first: 2, after: $after) {
+      edges {
+        cursor
+        node {
+          id
+          director
+          title
+          releaseDate
+        }
+      }
+    }
+  }
+`;
 
-// client.query({ query });
+client.query({ query });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <ApolloProvider client={client}> */}
-    <App />
-    {/* </ApolloProvider> */}
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ApolloProvider>
   </React.StrictMode>
 );

@@ -1,29 +1,13 @@
-import { gql, useQuery } from "@apollo/client";
-
-// const ALL_FILMS = gql`
-//   query Query($after: String, $before: String, $first: Int, $last: Int) {
-//     allFilms(after: $after, before: $before, first: $first, last: $last) {
-//       films {
-//         director
-//         id
-//         releaseDate
-//         title
-//       }
-//     }
-//   }
-// `;
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
 
 function App() {
-  // const Films = useQuery(ALL_FILMS);
-  // console.log(Films);
-  // if (Films.loading) return <div>Loading...</div>;
-  // return <div>{Films.data.allFilms.films.map((p) => p.title)}</div>;
-
   return (
-    <div className="grid grid-rows-3">
-      <headers className="bg-indigo-500">1</headers>
-      <mainain className="bg-amber-500">1</mainain>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/:id" element={<MoviePage />} />
+    </Routes>
   );
 }
 
