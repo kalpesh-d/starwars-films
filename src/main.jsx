@@ -15,8 +15,8 @@ const client = new ApolloClient({
 });
 
 const query = gql`
-  query Query($after: String, $before: String, $first: Int, $last: Int) {
-    allFilms(after: $after, before: $before, first: $first, last: $last) {
+  query Query($after: String) {
+    allFilms(first: 2, after: $after) {
       edges {
         cursor
         node {
