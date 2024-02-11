@@ -8,6 +8,7 @@ import {
   gql,
   ApolloProvider,
 } from "@apollo/client";
+import { BrowserRouter } from "react-router-dom";
 
 const client = new ApolloClient({
   uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
@@ -35,7 +36,9 @@ client.query({ query });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>
 );

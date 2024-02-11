@@ -1,5 +1,4 @@
 function Movie({ movie }) {
-  console.log(movie);
   return (
     <div className="p-4 h-fit sm:w-24 md:w-96 lg:w-96 border-2 rounded-md border-slate600">
       <p className="md:text-base sm:text-xs">
