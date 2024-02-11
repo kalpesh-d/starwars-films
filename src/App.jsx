@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import MoviesPage from "./pages/MoviesPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<MoviesPage />} />
+      <Route path="/" element={<HomePage />} />
     </Routes>
   );
 }

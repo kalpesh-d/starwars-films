@@ -22,7 +22,7 @@ const ALL_MOVIES = gql`
 
 const POSTPERPAGE = 2;
 
-function MoviesPage() {
+function HomePage() {
   const { loading, data } = useQuery(ALL_MOVIES);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -53,4 +53,4 @@ function MoviesPage() {
   );
 }
 
-export default MoviesPage;
+export default HomePage;
