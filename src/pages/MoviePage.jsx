@@ -3,50 +3,53 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import Table from "../components/Table";
 
-function MoviePage() {
-  const { id } = useParams();
-
-  const MOVIE_DETAILS = gql`
-    query GetMovie($id: ID!) {
-      film(id: $id) {
-        director
-        id
-        releaseDate
-        title
-        episodeID
-        openingCrawl
-        created
-        edited
-        producers
-        characterConnection {
-          characters {
-            name
-            height
-            gender
-            id
-            eyeColor
-          }
+const MOVIE_DETAILS = gql`
+  query GetMovie($id: ID!) {
+    film(id: $id) {
+      director
+      id
+      releaseDate
+      title
+      episodeID
+      openingCrawl
+      created
+      edited
+      producers
+      characterConnection {
+        characters {
+          name
+          height
+          gender
+          id
+          eyeColor
         }
-        starshipConnection {
-          starships {
-            id
-            model
-            crew
-            starshipClass
-          }
+      }
+      starshipConnection {
+        starships {
+          id
+          model
+          crew
+          starshipClass
         }
-        planetConnection {
-          planets {
-            id
-            name
-            rotationPeriod
-            population
-            orbitalPeriod
-          }
+      }
+      planetConnection {
+        planets {
+          id
+          name
+          rotationPeriod
+          population
+          orbitalPeriod
         }
       }
     }
-  `;
+  }
+`;
+
+function MoviePage() {
+  const { id } = useParams();
+  const characters = ["Name", "Height", "Gender", "Eye Color"];
+  const starships = ["Model", "Starship Class", "crew"];
+  const planets = ["Model", "Population", "Rotation Period", "Orbital Period"];
 
   const { loading, data } = useQuery(MOVIE_DETAILS, {
     variables: { id },
@@ -90,22 +93,17 @@ function MoviePage() {
         </div>
         <Table
           characters={data.film.characterConnection.characters}
-          taleHeading={["Name", "Height", "Gender", "Eye Color"]}
+          taleHeading={characters}
           heading="Characters"
         />
         <Table
           starships={data.film.starshipConnection.starships}
-          taleHeading={["Model", "Starship Class", "crew"]}
+          taleHeading={starships}
           heading="Starships"
         />
         <Table
           planets={data.film.planetConnection.planets}
-          taleHeading={[
-            "Model",
-            "Population",
-            "Rotation Period",
-            "Orbital Period",
-          ]}
+          taleHeading={planets}
           heading="Planets"
         />
       </div>
