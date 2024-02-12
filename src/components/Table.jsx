@@ -6,7 +6,7 @@ function Table({ characters, taleHeading, starships, heading, planets }) {
       <h1 className="text-center font-bold uppercase text-2xl mt-5 text-rose">
         {heading}
       </h1>
-      <table className="w-full text-left border-collapse">
+      <table className="text-left border-collapse">
         <thead>
           <tr>
             {taleHeading.map((element, index) => (

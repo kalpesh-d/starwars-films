@@ -60,7 +60,7 @@ function MoviePage() {
 
   return (
     <div className="h-fit flex justify-center mx-5">
-      <div className="w-fit xl:w-2/4 lg:w-3/4 md:w-3/4 sm:w-9/12 grid auto-rows-auto gap-y-4 my-20">
+      <div className="w-auto xl:w-2/4 lg:w-3/4 md:w-3/4 sm:w-full grid auto-rows-auto gap-y-4 my-20">
         <div className="my-1">
           <span className="text-xl xl:text-2xl text-indigo">
             Star Wars - {data.film.episodeID}
