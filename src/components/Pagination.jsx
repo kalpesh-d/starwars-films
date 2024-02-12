@@ -11,7 +11,7 @@ function Pagination({ postsPerPage, totalPosts, paginate }) {
         <button
           type="button"
           key={number}
-          className="px-4 py-2 text-white rounded-md hover:bg-slate800 focus:bg-indigo"
+          className="px-4 py-2 border text-white rounded-md hover:bg-slate800 focus:bg-indigo"
           onClick={() => paginate(number)}
         >
           {number}
