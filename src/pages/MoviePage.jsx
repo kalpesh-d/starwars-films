@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
+import Table from "../components/Table";
 
 function MoviePage() {
   const { id } = useParams();
@@ -14,6 +15,18 @@ function MoviePage() {
         title
         episodeID
         openingCrawl
+        created
+        edited
+        producers
+        characterConnection {
+          characters {
+            name
+            height
+            gender
+            id
+            eyeColor
+          }
+        }
       }
     }
   `;
@@ -26,13 +39,42 @@ function MoviePage() {
   if (!data || !data.film) return <div>No data found</div>;
 
   return (
-    <div className="h-fit flex justify-center">
-      <div className="w-8/12 grid rows gap-y-4 m-5">
-        <h1>{data.film.title}</h1>
-        <p>Director: {data.film.director}</p>
-        <p>Release Date: {data.film.releaseDate}</p>
-        <p>Episode ID: {data.film.episodeID}</p>
-        <p>Opening Crawl: {data.film.openingCrawl}</p>
+    <div className="h-fit flex justify-center mx-5">
+      <div className="w-fit xl:w-2/4 lg:w-3/4 md:w-3/4 sm:w-9/12 grid auto-rows-auto gap-y-4 my-20">
+        <div className="my-1">
+          <span className="text-xl xl:text-2xl text-indigo">
+            Star Wars - {data.film.episodeID}
+          </span>
+          <h1 className="xl:text-5xl lg:text-5xl md:text-4xl sm:text-4xl text-3xl font-bold uppercase">
+            {data.film.title}
+          </h1>
+        </div>
+        <p className="text-slate400 text-base lg:text-lg">
+          {data.film.openingCrawl}
+        </p>
+        <div className="text-slate400">
+          <p>
+            <span className="text-lg font-semibold">Director: </span>
+            {data.film.director}
+          </p>
+          <p>
+            <span className="text-lg font-semibold">Release Date: </span>
+            {data.film.releaseDate}
+          </p>
+          <p>
+            <span className="text-lg font-semibold">Producer: </span>
+            {data.film.producers.map((producer, index) => (
+              <span key={index}>
+                {index > 0 && ", "}
+                {producer}
+              </span>
+            ))}
+          </p>
+        </div>
+        <Table
+          characters={data.film.characterConnection.characters}
+          heading={["Name", "Height", "Gender", "Eye Color"]}
+        />
       </div>
     </div>
   );
