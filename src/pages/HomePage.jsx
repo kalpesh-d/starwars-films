@@ -29,12 +29,13 @@ function HomePage() {
   // console.log(data);
   if (loading) return <Loading value="Loading..." />;
 
+  const sortedMovies = [...data.allFilms.films].sort(
+    (a, b) => a.episodeID - b.episodeID
+  );
+
   const indexOfLastPost = currentPage * POSTPERPAGE;
   const indexOfFirstPost = indexOfLastPost - POSTPERPAGE;
-  const currentPosts = data.allFilms.films.slice(
-    indexOfFirstPost,
-    indexOfLastPost
-  );
+  const currentPosts = sortedMovies.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
