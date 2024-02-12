@@ -27,6 +27,23 @@ function MoviePage() {
             eyeColor
           }
         }
+        starshipConnection {
+          starships {
+            id
+            model
+            crew
+            starshipClass
+          }
+        }
+        planetConnection {
+          planets {
+            id
+            name
+            rotationPeriod
+            population
+            orbitalPeriod
+          }
+        }
       }
     }
   `;
@@ -73,7 +90,23 @@ function MoviePage() {
         </div>
         <Table
           characters={data.film.characterConnection.characters}
-          heading={["Name", "Height", "Gender", "Eye Color"]}
+          taleHeading={["Name", "Height", "Gender", "Eye Color"]}
+          heading="Characters"
+        />
+        <Table
+          starships={data.film.starshipConnection.starships}
+          taleHeading={["Model", "Starship Class", "crew"]}
+          heading="Starships"
+        />
+        <Table
+          planets={data.film.planetConnection.planets}
+          taleHeading={[
+            "Model",
+            "Population",
+            "Rotation Period",
+            "Orbital Period",
+          ]}
+          heading="Planets"
         />
       </div>
     </div>

@@ -1,15 +1,15 @@
 import TableCell from "./TableCell";
 
-function Table({ characters, heading }) {
+function Table({ characters, taleHeading, starships, heading, planets }) {
   return (
     <>
       <h1 className="text-center font-bold uppercase text-2xl mt-5 text-rose">
-        Characters
+        {heading}
       </h1>
       <table className="w-full text-left border-collapse">
         <thead>
           <tr>
-            {heading.map((element, index) => (
+            {taleHeading.map((element, index) => (
               <th
                 key={index}
                 className="font-semibold  sticky z-10 top-0 font-semibold text-slate-700  dark:bg-slate-900 dark:text-slate-300"
@@ -20,14 +20,34 @@ function Table({ characters, heading }) {
           </tr>
         </thead>
         <tbody className="align-baseline">
-          {characters.map((character) => (
-            <tr key={character.id}>
-              <TableCell>{character.name}</TableCell>
-              <TableCell>{character.height}</TableCell>
-              <TableCell>{character.gender}</TableCell>
-              <TableCell>{character.eyeColor}</TableCell>
-            </tr>
-          ))}
+          {characters &&
+            characters.map((character) => (
+              <tr key={character.id}>
+                <TableCell>{character.name}</TableCell>
+                <TableCell>{character.height}</TableCell>
+                <TableCell>{character.gender}</TableCell>
+                <TableCell>{character.eyeColor}</TableCell>
+              </tr>
+            ))}
+
+          {starships &&
+            starships.map((starship) => (
+              <tr key={starship.id}>
+                <TableCell>{starship.model}</TableCell>
+                <TableCell>{starship.starshipClass}</TableCell>
+                <TableCell>{starship.crew}</TableCell>
+              </tr>
+            ))}
+
+          {planets &&
+            planets.map((planet) => (
+              <tr key={planet.id}>
+                <TableCell>{planet.name}</TableCell>
+                <TableCell>{planet.population}</TableCell>
+                <TableCell>{planet.rotationPeriod}</TableCell>
+                <TableCell>{planet.orbitalPeriod}</TableCell>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>
