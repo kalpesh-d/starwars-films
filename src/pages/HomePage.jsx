@@ -29,12 +29,14 @@ function HomePage() {
   const [search, setSearch] = useState("");
 
   // console.log(search);
-  // console.log(data);
+  console.log(data);
   if (loading) return <Loading value="Loading..." />;
 
   const filteredMovies = search
-    ? data.allFilms.films.filter((movie) =>
-        movie.title.toLowerCase().includes(search.toLowerCase())
+    ? data.allFilms.films.filter(
+        (movie) =>
+          movie.title.toLowerCase().includes(search.toLowerCase()) ||
+          movie.episodeID.toString().includes(search.toLowerCase())
       )
     : data.allFilms.films;
 
